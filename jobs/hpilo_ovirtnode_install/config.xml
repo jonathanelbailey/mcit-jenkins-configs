@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties/>
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@3.5.0">
+    <configVersion>2</configVersion>
+    <userRemoteConfigs>
+      <hudson.plugins.git.UserRemoteConfig>
+        <url>https://github.com/jonathanelbailey/hpilo_ovirtnode_install</url>
+        <credentialsId>281ca62a-fdf0-4497-b10f-f9b17f50d268</credentialsId>
+      </hudson.plugins.git.UserRemoteConfig>
+    </userRemoteConfigs>
+    <branches>
+      <hudson.plugins.git.BranchSpec>
+        <name>*/master</name>
+      </hudson.plugins.git.BranchSpec>
+    </branches>
+    <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+    <submoduleCfg class="list"/>
+    <extensions>
+      <hudson.plugins.git.extensions.impl.WipeWorkspace/>
+    </extensions>
+  </scm>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.Shell>
+      <command>sudo apt install python3-pip -y
+pip3 install python-hpilo
+chmod +x hpilo_ovirtnode_install.py
+./hpilo_ovirtnode_install.py --password ${password}</command>
+    </hudson.tasks.Shell>
+  </builders>
+  <publishers/>
+  <buildWrappers>
+    <com.michelin.cio.hudson.plugins.maskpasswords.MaskPasswordsBuildWrapper>
+      <varPasswordPairs>
+        <varPasswordPair var="password" password="{AQAAABAAAABA4h22TxcDjuLinkwfnsWIgEIgT5i61RJoGa6zmMSdL9TvhAeuKgr2sd5QAwruje03zJZcBTHEJ1J1lG2PRHzkM1nXwNy4/wlWPMYW3NISG1o=}"/>
+      </varPasswordPairs>
+    </com.michelin.cio.hudson.plugins.maskpasswords.MaskPasswordsBuildWrapper>
+  </buildWrappers>
+</project>
